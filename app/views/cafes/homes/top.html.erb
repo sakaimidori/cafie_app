@@ -17,10 +17,21 @@
       </thead>
 
       <tbody>
-        <td><%= @cafe</td>
-
-
+        <td><%= @cafe.cafe_name %></td>
+        <td><%= @cafe.phone_number %></td>
+        <td><%= @cafe.address %></td>
+        <td><%= @cafe.email %></td>
+        <td><%= @cafe.business_hour %></td>
+        <td><%= @cafe.fixed_holiday %></td>
+        <td><%= @cafe.payment_method %></td>
+        <td><%= @cafe.smoking %></td>
+        <td><%= @cafe.introduce %></td>
+        <td><%= @cafe.remarks %></td>
       </tbody>
+
+
+     <%= link_to "編集する", edit_cafe_cafe_path(@cafe) %>
+
 
 
 

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # 店舗用
+  # 管理者側のルーティング設定
 
   # URL /cafes/sign_in ...
   devise_for :cafes, controllers: {
@@ -8,7 +8,16 @@ Rails.application.routes.draw do
   }
 
   #店舗TOPページ（店舗基本情報画面）
-  get 'cafes' => 'cafes/homes#top'
+  get 'cafe' => 'cafes/homes#top'
+
+  namespace :cafe do
+
+    resources :cafes, only: [:edit, :update]
+    resources :menus, only: [:new]
+
+  end
+
+
 
 
   # ユーザー用
