@@ -1,0 +1,2 @@
+module Cafes::CafesHelper
+end

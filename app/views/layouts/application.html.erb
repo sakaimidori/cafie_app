@@ -11,6 +11,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if cafe_signed_in? %>
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+      <% end %>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

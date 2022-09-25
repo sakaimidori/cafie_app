@@ -1,0 +1,2 @@
+module Cafes::HomesHelper
+end
