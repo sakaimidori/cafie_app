@@ -10,9 +10,12 @@ Rails.application.routes.draw do
   #店舗TOPページ（店舗基本情報画面）
   get 'cafe' => 'cafes/homes#top'
 
-  namespace :cafe do
 
-    resources :cafes, only: [:edit, :update]
+  namespace :cafes do
+    resource :cafes, only: [:edit, :update] do
+      get :confirm
+      patch :withdraw
+    end
     resources :menus, only: [:new]
 
   end
