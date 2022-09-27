@@ -1,0 +1,5 @@
+<h5>本当に退会しますか？</h5>
+
+<%= link_to "退会しない", cafe_path %>
+
+<%= link_to "退会する", withdraw_cafe_cafes_path, method: :patch, "data-confirm" => "本当に退会しますか？" %>

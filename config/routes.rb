@@ -1,22 +1,23 @@
 Rails.application.routes.draw do
+
   # 管理者側のルーティング設定
 
   # URL /cafes/sign_in ...
-  devise_for :cafes, controllers: {
-  registrations: "cafes/registrations",
-  sessions: 'cafes/sessions'
+  devise_for :cafe, controllers: {
+  registrations: "cafe/registrations",
+  sessions: 'cafe/sessions'
   }
 
-  #店舗TOPページ（店舗基本情報画面）
-  get 'cafe' => 'cafes/homes#top'
 
-
-  namespace :cafes do
+  namespace :cafe do
+    root to: "homes#top", as: '/'
     resource :cafes, only: [:edit, :update] do
+      #退会確認画面
       get :confirm
+      #退会（論理削除）
       patch :withdraw
     end
-    resources :menus, only: [:new]
+    resources :menus, only: [:new, :index]
 
   end
 
