@@ -23,7 +23,11 @@ class Cafe::MenusController < ApplicationController
     redirect_to cafe_menus_path
   end
 
-
+  def destroy
+    @menu = Menu.find(params[:id])
+    @menu.destroy
+    redirect_to cafe_menus_path
+  end
 
   private
 
