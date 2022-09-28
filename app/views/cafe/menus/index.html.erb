@@ -1,0 +1,53 @@
+<h2>メニュー新規登録</h2>
+
+<%= form_with model:@menu, url: cafe_menus_path do |f| %>
+
+  <h4>メニュー画像</h4>
+
+
+  <h4>メニュー名</h4>
+    <%= f.text_field :menu_name %>
+
+  <h4>税込価格</h4>
+    <%= f.text_field :price %>円<br />
+
+    <%= f.submit "メニューを新規登録する" %>
+
+
+<% end %>
+
+<h2>メニュー一覧</h2>
+
+<table>
+
+  <thead>
+    <tr>
+      <th>メニュー画像</th>
+      <th>メニュー名</th>
+      <th>税込価格</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @menus.each do |menu| %>
+      <tr>
+        <td>
+
+        </td>
+        <td>
+          <%= menu.menu_name %>
+        </td>
+        <td>
+          <%= menu.price %>円
+        </td>
+        <td>
+          <%= link_to "編集する", edit_cafe_menu_path(menu.id) %>
+        </td>
+        <td>
+          <%= link_to "削除する", cafe_menu_path(menu.id), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

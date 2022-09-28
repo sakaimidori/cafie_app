@@ -7,6 +7,8 @@ class Cafe < ApplicationRecord
   #緯度経度を取得する
   before_validation :set_latlong
 
+  has_many :menus, dependent: :destroy
+
   private
 
   def set_latlong
