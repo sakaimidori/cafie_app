@@ -17,6 +17,11 @@ class Cafe::MenusController < ApplicationController
     @menu = Menu.find(params[:id])
   end
 
+  def update
+    @menu = Menu.find(params[:id])
+    @menu.update(menus_params)
+    redirect_to cafe_menus_path
+  end
 
 
 
