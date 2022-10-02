@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  # 管理者側のルーティング設定
+  root to: "homes#top"
+  get 'about' => 'homes#about'
+
+
+  # 管理者側のルーティング
 
   # URL /cafes/sign_in ...
   devise_for :cafe, controllers: {
@@ -24,7 +28,8 @@ Rails.application.routes.draw do
 
 
 
-  # ユーザー用
+
+  # ユーザー側のルーティング
   # URL /users/sign_in ...
   devise_for :user, controllers: {
   registrations: "user/registrations",
