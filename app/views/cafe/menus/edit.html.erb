@@ -4,7 +4,7 @@
 <%= form_with model: @menu, url: cafe_menu_path do |f| %>
 
   <label>写真</label><br />
-
+  <%= f.file_field :image, accept: "image/*" %><br />
   <label>メニュー名</label>
   <%= f.text_field :menu_name %><br />
 
