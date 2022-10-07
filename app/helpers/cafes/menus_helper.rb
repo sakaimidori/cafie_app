@@ -1,0 +1,2 @@
+module Cafes::MenusHelper
+end
