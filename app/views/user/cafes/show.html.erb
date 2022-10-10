@@ -1,3 +1,41 @@
+<h2>
+  <%= @cafe.cafe_name %>
+</h2>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>電話番号</th>
+      <th>住所</th>
+      <th>メールアドレス</th>
+      <th>営業時間</th>
+      <th>定休日</th>
+      <th>支払い方法</th>
+      <th>喫煙・禁煙</th>
+      <th>カフェ紹介文</th>
+      <th>備考</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @cafe.phone_number %></td>
+      <td><%= @cafe.address %></td>
+      <td><%= @cafe.email %></td>
+      <td><%= @cafe.business_hour %></td>
+      <td><%= @cafe.fixed_holiday %></td>
+      <td><%= @cafe.payment_method %></td>
+      <td><%= @cafe.smoking %></td>
+      <td><%= @cafe.introduce %></td>
+      <td><%= @cafe.remarks %></td>
+    </tr>
+  </tbody>
+
+</table>
+
+
+
 <div id= "map"></div>
 
 <script>
@@ -14,7 +52,7 @@
       },
       zoom: 17,
     });
-    
+
 
     marker = new google.maps.Marker({
       // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
@@ -30,3 +68,4 @@
 <script async defer
       src = "https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
 </script>
+
