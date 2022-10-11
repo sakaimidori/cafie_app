@@ -42,7 +42,7 @@
         infoWindow[i] = new google.maps.InfoWindow({
           // contentで中身を指定
           // 今回は文字にリンクを貼り付けた形で表示
-          content: `<a data-turbolinks="false" href='/user/cafes/${id}'>${cafes[i].cafe_name}</a>`
+          content: `<a data-turbolinks="false" href='/cafes/${id}'>${cafes[i].cafe_name}</a>`
         });
         // markerがクリックされた時、
         marker[i].addListener("click", function(){
