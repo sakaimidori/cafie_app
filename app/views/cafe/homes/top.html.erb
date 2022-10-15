@@ -1,33 +1,51 @@
 <h2>店舗基本情報</h2>
 
 
-    <table>
+    <table class = "table">
 
-      <thead>
+      <tr>
         <th>店名</th>
-        <th>電話番号</th>
-        <th>住所</th>
-        <th>メールアドレス</th>
-        <th>営業時間</th>
-        <th>定休日</th>
-        <th>支払い方法</th>
-        <th>喫煙・禁煙</th>
-        <th>カフェ紹介文</th>
-        <th>備考</th>
-      </thead>
-
-      <tbody>
         <td><%= @cafe.cafe_name %></td>
+      </tr>
+      <tr>
+        <th>電話番号</th>
         <td><%= @cafe.phone_number %></td>
+      </tr>
+      <tr>
+        <th>住所</th>
         <td><%= @cafe.address %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
         <td><%= @cafe.email %></td>
+      </tr>
+      <tr>
+        <th>営業時間</th>
         <td><%= @cafe.business_hour %></td>
+      </tr>
+      <tr>
+        <th>定休日</th>
         <td><%= @cafe.fixed_holiday %></td>
+      </tr>
+      <tr>
+        <th>支払い方法</th>
         <td><%= @cafe.payment_method %></td>
+      </tr>
+      <tr>
+        <th>喫煙・禁煙</th>
         <td><%= @cafe.smoking %></td>
+      </tr>
+      <tr>
+        <th>カフェ紹介文</th>
         <td><%= @cafe.introduce %></td>
+      </tr>
+      <tr>
+        <th>備考</th>
         <td><%= @cafe.remarks %></td>
-      </tbody>
+      </tr>
+    </table>
+
+
 
 
      <%= link_to "編集する", edit_cafe_cafes_path %>
@@ -36,4 +54,3 @@
 
 
 
-    </table>
