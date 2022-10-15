@@ -8,7 +8,7 @@
 
     <!--gonを読み込み-->
     <%= include_gon %>
-    <%#= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -18,29 +18,29 @@
     <header>
       <% if cafe_signed_in? %>
         <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'text-dark' %>
         </li>
         <li>
-          <%= link_to "メニュー一覧", cafe_menus_path %>
+          <%= link_to "メニュー一覧", cafe_menus_path, class: 'text-dark' %>
         </li>
         <li>
-          <%= link_to "店舗基本情報", cafe_path %>
+          <%= link_to "店舗基本情報", cafe_path, class: 'text-dark' %>
         </li>
         <li>
-          <%= link_to "About", about_path %>
+          <%= link_to "About", about_path, class: 'text-dark' %>
         </li>
       <% else %>
         <li>
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "ログイン", new_user_session_path,class: 'text-dark' %>
         </li>
         <li>
-          <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "新規登録", new_user_registration_path,class: 'text-dark' %>
         </li>
         <li>
-          <%= link_to "カフェを検索", cafes_path %>
+          <%= link_to "カフェを検索", cafes_path,class: 'text-dark' %>
         </li>
         <li>
-          <%= link_to "About", about_path %>
+          <%= link_to "About", about_path,class: 'text-dark' %>
         </li>
 
 
