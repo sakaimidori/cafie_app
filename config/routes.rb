@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
+  #アプリケーショントップページ
   root to: "homes#top"
+  #アプリケーションAboutページ
   get 'about' => 'homes#about'
 
 
   # 管理者側のルーティング
 
-  # URL /cafes/sign_in ...
+
   devise_for :cafe, controllers: {
   registrations: "cafe/registrations",
   sessions: 'cafe/sessions'
@@ -30,16 +32,18 @@ Rails.application.routes.draw do
 
 
   # ユーザー側のルーティング
-  # URL /users/sign_in ...
+
   devise_for :user, controllers: {
   registrations: "user/registrations",
   sessions: 'user/sessions'
   }
 
-  namespace :user do
-    resources :cafes, only: [:index, :show] do
-
+  scope module: :user do
+    resources :cafes, only: [:index, :show]do
+      resource :favorites, only: [:create, :destroy]
     end
+    resource :users, only: [:show, :edit]
+
   end
 
 
