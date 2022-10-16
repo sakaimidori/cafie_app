@@ -56,6 +56,9 @@ class DeviseCreateCafes < ActiveRecord::Migration[6.1]
       t.text :introduce
       #備考
       t.text :remarks
+      #混雑状態
+      t.integer :congestion_status, null: false, default: 0
+      
 
 
 
