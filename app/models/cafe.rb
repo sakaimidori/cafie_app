@@ -4,16 +4,16 @@ class Cafe < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #緯度経度を取得する
-  before_validation :set_latlong
 
   has_many :menus, dependent: :destroy
 
-  private
+                            #営業時間外　　　　空席あり　　　残りわずか　　　空席なし
+   enum congestion_status: { outside_hours: 0, available: 1, little_left: 2, not_available: 3 }
 
-  def set_latlong
-    # Google Map APIを使用して住所から緯度経度を取得する。
-    self.latitude = 0
-    self.longitude = 0
-  end
+  #緯度経度を取得する
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
+
+
 end
