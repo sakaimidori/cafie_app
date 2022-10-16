@@ -1,0 +1,11 @@
+ja:
+  enums:
+    cafe:
+      congestion_status:
+        outside_hours: "営業時間外"
+        available: "空席あり"
+        little_left: "残りわずか"
+        not_available: "空席なし"
+
+
+
