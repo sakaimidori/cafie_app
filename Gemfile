@@ -62,3 +62,5 @@ gem 'dotenv-rails'
 gem 'gon'
 
 gem 'geocoder'
+
+gem 'enum_help'
