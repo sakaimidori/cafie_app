@@ -21,5 +21,4 @@ class Cafe < ApplicationRecord
   end
 
 
-
 end
