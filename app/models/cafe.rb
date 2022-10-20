@@ -6,6 +6,7 @@ class Cafe < ApplicationRecord
 
 
   has_many :menus, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
                             #営業時間外　　　　空席あり　　　残りわずか　　　空席なし
