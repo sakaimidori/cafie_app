@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   scope module: :user do
     resources :cafes, only: [:index, :show]do
+      resources :reviews, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
     resource :users, only: [:show, :edit]
