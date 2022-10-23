@@ -7,7 +7,7 @@ class Cafe::MenusController < ApplicationController
   end
 
   def create
-    @menu = Menu.new(menus_params)
+    @menu = Menu.new(menu_params)
     @menu.cafe = current_cafe
     @menu.save
     redirect_to cafe_menus_path
@@ -19,7 +19,7 @@ class Cafe::MenusController < ApplicationController
 
   def update
     @menu = Menu.find(params[:id])
-    @menu.update(menus_params)
+    @menu.update(menu_params)
     redirect_to cafe_menus_path
   end
 
@@ -31,7 +31,7 @@ class Cafe::MenusController < ApplicationController
 
   private
 
-  def menus_params
-    params.require(:menu).permit(:menu_name, :price)
+  def menu_params
+    params.require(:menu).permit(:menu_name, :price, :image)
   end
 end
