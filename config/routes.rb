@@ -39,10 +39,11 @@ Rails.application.routes.draw do
   }
 
   scope module: :user do
-    resources :cafes, only: [:index, :show]do
+    resources :cafes, only: [:index]do
       resources :reviews, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+    get 'cafes/:id' => 'cafes#show', as: 'cafe_show'
     resource :users, only: [:show, :edit]
 
   end
