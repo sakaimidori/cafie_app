@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # 管理者側のルーティング
 
 
-  devise_for :cafe, controllers: {
+  devise_for :cafe, skip: [:passwords], controllers: {
   registrations: "cafe/registrations",
   sessions: 'cafe/sessions'
   }
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
   # ユーザー側のルーティング
 
-  devise_for :user, controllers: {
+  devise_for :user, skip: [:passwords], controllers: {
   registrations: "user/registrations",
   sessions: 'user/sessions'
   }
