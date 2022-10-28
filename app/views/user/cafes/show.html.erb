@@ -1,22 +1,43 @@
 <h2>
   <%= @cafe.cafe_name %>
 </h2>
-<% if @cafe.favorited_by?(current_user) %>
-  <p>
-    <%= link_to cafe_favorite_path(@cafe), method: :delete do %>
-      ♥<%= @cafe.favorites.count %>いいね
+
+<div>
+  <% if current_user %>
+    <% if @cafe.favorited_by?(current_user) %>
+      <p>
+        <%= link_to cafe_favorites_path(@cafe), method: :delete do %>
+          ♥<%= @cafe.favorites.count %>いいね
+      </p>
+        <% end %>
+    <% else %>
+      <p>
+        <%= link_to cafe_favorites_path(@cafe), method: :post do %>
+          ♥<%= @cafe.favorites.count %>いいね
+        <% end %>
+      </p>
     <% end %>
-  </p>
-<% else %>
-  <p>
-    <%= link_to cafe_favorites_path(@cafe), method: :post do %>
-      ♥<%= @cafe.favorites.count %>いいね
-    <% end %>
-  </p>
-<% end %>
+  <% else %>
+    <p>
+      <%= link_to  new_user_session_path do %>
+        ♥<%= @cafe.favorites.count %>いいね
+      <% end %>
+    </p>
+  <% end %>
+
+</div>
+<%= flash[:notice] %>
 
 <div>
   <%= @cafe.congestion_status_i18n %>
+</div>
+
+<div>
+  <% if @cafe.cafe_images.attached? %>
+    <% @cafe.cafe_images.each do |cafe_image| %>
+      <%= image_tag cafe_image.variant(resize_to_limit: [150, 150]) %>
+    <% end %>
+  <% end%>
 </div>
 
 <ul class = "text-center nav nav-tabs" id="myTab" role="tablist">
@@ -46,7 +67,22 @@
       aria-controls = "menu"
       aria-selected = "false"
       >
-      メニュー
+      メニュー(<%= @cafe.menus.count %>)
+    </button>
+  </li>
+
+  <li class = "nav-item" role = "presentation">
+    <button
+      class = "nav-link"
+      id = "review-tab"
+      data-bs-toggle = "tab"
+      data-bs-target = "#review"
+      type = "button"
+      role = "tab"
+      aria-controls = "review"
+      aria-selected = "false"
+      >
+      クチコミ(<%= @cafe.reviews.count %>)
     </button>
   </li>
 
@@ -68,6 +104,7 @@
 </ul>
 
 <div class = "tab-content" id = "myTabContent">
+
   <div
     class = "tab-pane fade show active"
     id = "home"
@@ -113,6 +150,8 @@
          <td><%= @cafe.remarks %></td>
       </tr>
     </table>
+
+    <%= link_to "編集する", edit_cafe_cafes_path %>
   </div>
 
 
@@ -123,14 +162,14 @@
     aria-labelledby = "menu-tab"
     >
     <table>
-      <% @menus.each do |menu| %>
+      <% @cafe.menus.each do |menu| %>
         <tr>
           <tbody>
             <td>
-              <%= image_tag menu.image, size:"100x100" %>
+              <%= image_tag menu.get_image(100,100) %>
             </td>
             <td>
-              <%= menu.menu_name %>
+              <h5><%= menu.menu_name %></h5>
             </td>
             <td>
               <%= menu.price %>円
@@ -138,13 +177,40 @@
           </tbody>
         </tr>
       <% end %>
-      <tbody>
 
-      </tbody>
     </table>
 
   </div>
 
+  <div
+    class = "tab-pane fade"
+    id = "review"
+    role = "tabpanel"
+    aria-labelledby = "review-tab"
+    >
+  <table>
+    <% @cafe.reviews.each do |review| %>
+      <tr>
+        <tbody>
+          <td>
+            <%= review.user.username %>
+          </td>
+          <td>
+            <%= review.content %>
+          </td>
+        </tbody>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= form_with model:@review, url: 
+
+
+
+
+
+
+</div>
 
   <div
     class = "tab-pane fade"
