@@ -1,3 +1,5 @@
+
+
 <h2>
   <%= @cafe.cafe_name %>
 </h2>
@@ -151,7 +153,6 @@
       </tr>
     </table>
 
-    <%= link_to "編集する", edit_cafe_cafes_path %>
   </div>
 
 
@@ -198,13 +199,22 @@
           <td>
             <%= review.content %>
           </td>
+          <td>
+            <% if review.user == current_user %>
+               <%= link_to "削除", cafe_review_path(review), method: :delete %>
+            <% end %>
+          </td>
         </tbody>
       </tr>
     <% end %>
   </table>
 
-  <%= form_with model:@review, url: 
-
+<div>
+  <%= form_with model: [@cafe, @review] do |f| %>
+    <%= f.text_area :content, row: '5', placeholder: "クチコミを投稿してください。" %>
+    <%= f.submit "投稿する" %>
+  <% end %>
+</div>
 
 
 

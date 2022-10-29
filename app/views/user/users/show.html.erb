@@ -1,1 +1,113 @@
 <h2>マイページ</h2>
+
+  <table>
+
+    <tr>
+      <th>ユーザー名</th>
+      <th><%= @user.username %></th>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <th><%= @user.email %></th>
+    </tr>
+  </table>
+
+  <ul class = "text-center nav nav-tabs" id="myTab" role="tablist">
+    <li class = "nav-item" role = "presentation">
+      <button
+        class = "nav-link active"
+        id = "favorite-tab"
+        data-bs-toggle = "tab"
+        data-bs-target = "#favorite"
+        type = "button"
+        role = "tab"
+        aria-controls = "favorite"
+        aria-selected = "true"
+        >
+        お気に入りのカフェ(<%= @favorites.count %>)
+      </button>
+    </li>
+
+    <li class = "nav-item" role = "presentation">
+      <button
+        class = "nav-link"
+        id = "review-tab"
+        data-bs-toggle = "tab"
+        data-bs-target = "#review"
+        type = "button"
+        role = "tab"
+        aria-controls = "review"
+        aria-selected = "false"
+        >
+        投稿したクチコミ(<%= @reviews.count %>)
+      </button>
+    </li>
+  </ul>
+
+    <div class = "tab-content" id = "myTabContent">
+
+      <div
+      class = "tab-pane fade"
+      id = "favorite"
+      role = "tabpanel"
+      aria-labelledby = "favorite-tab"
+      >
+        <table>
+          <% @favorites.each do |favorite| %>
+            <table>
+              <tbody>
+                <td>
+                  <%= favorite.cafe.cafe_name %>
+                </td>
+                <td>
+
+                </td>
+                <td>
+                  <%= link_to "この店舗を見る", cafe_show_path(favorite.cafe_id) %>
+                </td>
+                <td>
+                  <!--リンク先の修正-->
+                  <%= link_to "お気に入りから削除", cafe_favorites_path(favorite.cafe_id), method: :delete %>
+                </td>
+              </tbody>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+
+      <div
+      class = "tab-pane fade"
+      id = "review"
+      role = "tabpanel"
+      aria-labelledby = "review-tab"
+      >
+        <table>
+          <% @reviews.each do |review| %>
+            <tr>
+              <% if review.cafe.is_active == true %>
+                <tr>
+                  <td>
+                    <%= review.cafe.cafe_name %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <%= review.content %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <%= link_to "この店舗を見る", cafe_show_path(review.cafe_id) %>
+                  </td>
+                  <td>
+                    <%= link_to "このクチコミを削除", cafe_review_path(review), method: :delete %>
+                  </td>
+                </tr>
+                </tbody>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+
+    </div>

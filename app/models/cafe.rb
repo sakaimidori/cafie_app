@@ -9,6 +9,8 @@ class Cafe < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  has_many_attached :cafe_images
+
                             #営業時間外　　　　空席あり　　　残りわずか　　　空席なし
    enum congestion_status: { outside_hours: 0, available: 1, little_left: 2, not_available: 3 }
 

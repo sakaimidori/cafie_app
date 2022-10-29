@@ -32,6 +32,9 @@
     <label>備考</label>
     <%= f.text_field :remarks %><br />
 
+    <label>カフェ画像</label>
+    <%= f.file_field :cafe_images, direct_upload: true, multiple: true %>
+
 <div>
     <%= f.radio_button :congestion_status, "available" %>
     <%= f.label :congestion_status, "空席あり" %>
@@ -48,6 +51,8 @@
     <%= f.radio_button :congestion_status, "outside_hours" %>
     <%= f.label :congestion_status, "営業時間外" %>
 </div>
+
+
 
 
     <%= f.submit "変更を保存" %>

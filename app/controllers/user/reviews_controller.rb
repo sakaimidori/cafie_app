@@ -2,18 +2,20 @@ class User::ReviewsController < ApplicationController
 
   def create
     cafe = Cafe.find(params[:cafe_id])
-    content = Content.new(review_params)
-    content.user_id = current_user.id
-    content.cafe_id = cafe.id
-    content.save
+    review = Review.new(review_params)
+    #ログインしてない場合、クチコミ投稿ボタンを出さない
+    review.user_id = current_user.id
+    review.cafe_id = cafe.id
+    review.save
     flash[:notice] = "クチコミを投稿しました。"
-    redirect_to cafe_path(cafe)
+    redirect_to cafe_show_path(cafe)
   end
 
   def destroy
-    Content.find(params[:id]).destroy
+    review = Review.find(params[:id])
+    review.destroy
     flash[:notice] = "クチコミを削除しました。"
-    redirect_to cafe_path(cafe)
+    redirect_to cafe_show_path(params[:cafe_id])
   end
 
   private

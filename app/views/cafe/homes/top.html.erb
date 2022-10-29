@@ -1,58 +1,70 @@
-<h2>店舗基本情報</h2>
+<div class="container">
 
+  <h3>店舗基本情報</h3>
+  
+  
+      <table class = "table">
+  
+        <tr>
+          <th>店名</th>
+          <td><%= @cafe.cafe_name %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @cafe.phone_number %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= @cafe.address %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @cafe.email %></td>
+        </tr>
+        <tr>
+          <th>営業時間</th>
+          <td><%= @cafe.business_hour %></td>
+        </tr>
+        <tr>
+          <th>定休日</th>
+          <td><%= @cafe.fixed_holiday %></td>
+        </tr>
+        <tr>
+          <th>支払い方法</th>
+          <td><%= @cafe.payment_method %></td>
+        </tr>
+        <tr>
+          <th>喫煙・禁煙</th>
+          <td><%= @cafe.smoking %></td>
+        </tr>
+        <tr>
+          <th>カフェ紹介文</th>
+          <td><%= @cafe.introduce %></td>
+        </tr>
+        <tr>
+          <th>備考</th>
+          <td><%= @cafe.remarks %></td>
+        </tr>
+      </table>
+  
+      <h3>現在の混雑状況</h3>
+  
+      <div><%= @cafe.congestion_status_i18n %></div>
+  
+      <div>
+        <% if @cafe.cafe_images.attached? %>
+          <% @cafe.cafe_images.each do |cafe_image| %>
+            <%= image_tag cafe_image.variant(resize_to_limit: [150, 150]) %>
+          <% end %>
+        <% end%>
+      </div>
+  
+  
+  
+       <%= link_to "編集する", edit_cafe_cafes_path %>
+       <%= link_to "退会する", confirm_cafe_cafes_path %>
 
-    <table class = "table">
-
-      <tr>
-        <th>店名</th>
-        <td><%= @cafe.cafe_name %></td>
-      </tr>
-      <tr>
-        <th>電話番号</th>
-        <td><%= @cafe.phone_number %></td>
-      </tr>
-      <tr>
-        <th>住所</th>
-        <td><%= @cafe.address %></td>
-      </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= @cafe.email %></td>
-      </tr>
-      <tr>
-        <th>営業時間</th>
-        <td><%= @cafe.business_hour %></td>
-      </tr>
-      <tr>
-        <th>定休日</th>
-        <td><%= @cafe.fixed_holiday %></td>
-      </tr>
-      <tr>
-        <th>支払い方法</th>
-        <td><%= @cafe.payment_method %></td>
-      </tr>
-      <tr>
-        <th>喫煙・禁煙</th>
-        <td><%= @cafe.smoking %></td>
-      </tr>
-      <tr>
-        <th>カフェ紹介文</th>
-        <td><%= @cafe.introduce %></td>
-      </tr>
-      <tr>
-        <th>備考</th>
-        <td><%= @cafe.remarks %></td>
-      </tr>
-    </table>
-
-    <h3>現在の混雑状況</h3>
-
-    <div><%= @cafe.congestion_status_i18n %></div>
-
-
-
-     <%= link_to "編集する", edit_cafe_cafes_path %>
-     <%= link_to "退会する", confirm_cafe_cafes_path %>
+  </div>
 
 
 

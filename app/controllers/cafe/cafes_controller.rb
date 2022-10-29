@@ -40,7 +40,7 @@ class Cafe::CafesController < ApplicationController
   private
 
   def cafe_params
-    params.require(:cafe).permit(:cafe_name, :phone_number, :address, :email, :business_hour, :fixed_holiday, :payment_method, :smoking, :introduce, :remarks, :latitude, :longitude, :congestion_status)
+    params.require(:cafe).permit(:cafe_name, :phone_number, :address, :email, :business_hour, :fixed_holiday, :payment_method, :smoking, :introduce, :remarks, :latitude, :longitude, :congestion_status, cafe_images: [])
   end
 
 end

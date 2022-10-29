@@ -1,1 +1,50 @@
-<h3>Topページ</h3>
+<!-- スライダーのコンテナ -->
+<div class="swiper">
+  <!-- 必要に応じたwrapper -->
+  <div class="swiper-wrapper">
+    <!-- スライド -->
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+    <div class="swiper-slide"></div>
+  </div>
+
+  <div class="swiper-controller">
+    <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</div><!-- /swiper -->
+
+
+<script>const swiper = new Swiper(".swiper", {
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+  },
+  navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+  }
+});
+</script>
+
+<div class ="w-75 h-50 mt-5">
+    <div class="w-50 p-3 pt-20">
+      <p class = "text-white">
+        繁華街に出かけた際、</br>
+        空いているカフェがなかなか見つからず苦労する、
+        「カフェ難民」になることがよくあります。</br>
+        当アプリ【CAFIE】を利用すれば、</br>
+        現在地周辺の空いているカフェがネットで検索でき、</br>
+        カフェを探して歩き回る苦労もなく、</br>
+        大切な時間をより有効的に使えます。</br>
+      <p class = "text-white">
+        また、立地の悪さなどがマイナスとなり、</br>
+        お店自体が認知されず集客に結びつかない…という悩みを持った店舗様へ、 </br>
+        このアプリが、たくさんの方々に店舗様を知って頂くきっかけとなり、集客に繋がると幸いです。</br>
+        新型ウイルスの影響で経営が厳しい昨今ですが、少しでも店舗様の手助けになりますように。</br>
+      </p>
+
+  </div>

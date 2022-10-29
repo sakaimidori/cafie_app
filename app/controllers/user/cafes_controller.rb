@@ -11,8 +11,7 @@ class User::CafesController < ApplicationController
     end
     @cafe = Cafe.find(params[:id])
     gon.cafe = @cafe
-    @menus = @cafe.menus
-    @reviews = @cafe.reviews
+    @review = Review.new
   end
 
 end
