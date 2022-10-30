@@ -1,15 +1,16 @@
- <div class="container text-center">
+ <div class="container text-center" style="margin-bottom: 270px;">
 
   <h5 class="mb-5">本当に退会しますか？</h5>
 
   <p>
-    退会すると、会員登録情報や</br>
-    これまでの購入履歴が閲覧できなくなります。</br>
+    退会すると、店舗登録情報の</br>
+    閲覧、編集ができなくなります。</br>
+    店舗ページも非表示となります。</br>
     退会する場合は、「退会する」をクリックしてください。
   </p>
 
-  <%= link_to "退会しない", cafe_path %>
+  <%= link_to "退会しない", cafe_path, class: "btn btn-primary mr-3" %>
 
-  <%= link_to "退会する", withdraw_cafe_cafes_path, method: :patch, "data-confirm" => "本当に退会しますか？" %>
+  <%= link_to "退会する", withdraw_cafe_cafes_path, method: :patch, class: "btn btn-outline-primary", "data-confirm" => "本当に退会しますか？" %>
 
 </div>
