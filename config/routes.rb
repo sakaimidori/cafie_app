@@ -44,7 +44,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
     get 'cafes/:id' => 'cafes#show', as: 'cafe_show'
-    resource :users, only: [:show, :edit]
+    resource :users, only: [:show, :edit, :update]
 
   end
 
