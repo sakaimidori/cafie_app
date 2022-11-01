@@ -1,5 +1,7 @@
 class Cafe::MenusController < ApplicationController
 
+  before_action :authenticate_cafe!
+
   def index #メニュー一覧画面、メニュー新規登録画面
     @menu = Menu.new
     @cafe = current_cafe
@@ -9,8 +11,12 @@ class Cafe::MenusController < ApplicationController
   def create
     @menu = Menu.new(menu_params)
     @menu.cafe = current_cafe
-    @menu.save
-    redirect_to cafe_menus_path
+    if @menu.save
+      redirect_to cafe_menus_path
+    else
+      @menus = Menu.all
+      render :index
+    end
   end
 
   def edit
@@ -19,8 +25,11 @@ class Cafe::MenusController < ApplicationController
 
   def update
     @menu = Menu.find(params[:id])
-    @menu.update(menu_params)
-    redirect_to cafe_menus_path
+    if @menu.update(menu_params)
+      redirect_to cafe_menus_path
+    else
+      render :edit
+    end
   end
 
   def destroy
