@@ -1,11 +1,25 @@
 ja:
+  errors:
+    messages:
+      blank: "が空欄です"
   enums:
     cafe:
       congestion_status:
         outside_hours: "営業時間外"
-        available: "空席あり"
-        little_left: "残りわずか"
-        not_available: "空席なし"
-
-
-
+        available: "空席あり : ○"
+        little_left: "残りわずか : △"
+        not_available: "空席なし : ×"
+  activerecord:
+    attributes:
+      cafe:
+        phone_number: "電話番号"
+        email: "メールアドレス"
+        cafe_name: "店舗名"
+        address: "住所"
+      user:
+        username: "ユーザー名"
+        email: "メールアドレス"
+      menu:
+        menu_name: "メニュー名"
+      review:
+        content: "投稿内容"
