@@ -13,6 +13,6 @@ class User::FavoritesController < ApplicationController
     favorite = current_user.favorites.find_by(cafe_id: cafe.id)
     favorite.destroy
     flash[:notice] = "お気に入りから削除しました"
-    redirect_to cafe_show_path(cafe)
+    redirect_to request.referer
   end
 end
