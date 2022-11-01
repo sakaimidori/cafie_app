@@ -1,5 +1,7 @@
 class User::UsersController < ApplicationController
 
+  before_action :authenticate_user!
+
   def show
     @user = current_user
      #Cafe.where(is_active: true)
