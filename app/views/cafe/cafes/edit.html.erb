@@ -1,60 +1,93 @@
-<h2>店舗基本情報編集</h2>
+<div class="container text-center mb-5">
 
-<%= form_with model: @cafe, url: cafe_cafes_path do |f| %>
+    <h3>店舗基本情報編集</h3>
 
-    <label>店名</label>
-    <%= f.text_field :cafe_name %><br />
+    <!--バリデーションの記述-->
 
-    <label>電話番号</label>
-    <%= f.text_field :phone_number %><br />
+      <% if @cafe.errors.any? %>
+        <%= @cafe.errors.count %>件のエラーが発生しました。
+        <ul>
+          <% @cafe.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    <!---->
 
-    <label>住所</label>
-    <%= f.text_field :address %><br />
 
-    <label>メールアドレス</label>
-    <%= f.email_field :email %><br />
+    <%= form_with model: @cafe, url: cafe_cafes_path do |f| %>
 
-    <label>営業時間</label>
-    <%= f.text_field :business_hour %><br />
+    <table class="table mt-5">
 
-    <label>定休日</label>
-    <%= f.text_field :fixed_holiday %><br />
+      <tr>
+        <th class="mr-3">店名<span class="badge bg-danger ml-2">必須</th>
+        <td><%= f.text_field :cafe_name, size: 30 %></td>
+      </tr>
+      <tr>
+        <th>電話番号<span class="badge bg-danger ml-2">必須</th>
+        <td><%= f.text_field :phone_number, size: 30 %></td>
+      </tr>
+      <tr>
+        <th>住所<span class="badge bg-danger ml-2">必須</th>
+        <td><%= f.text_field :address, size: 30 %></td>
+      </tr>
+      <tr>
+        <th>メールアドレス<span class="badge bg-danger ml-2">必須</th>
+        <td><%= f.email_field :email, size: 30 %></td>
+      </tr>
+      <tr>
+        <th>営業時間</th>
+        <td><%= f.text_area :business_hour, :size=>"30", placeholder: "例）平日 10:00-19:00  土曜日10:00-17:00" %></td>
+      </tr>
+      <tr>
+        <th>定休日</th>
+        <td><%= f.text_area :fixed_holiday, :size=>"30", placeholder: "例）日曜日"  %></td>
+      </tr>
+      <tr>
+        <th>支払い方法</th>
+        <td><%= f.text_area :smoking, :size=>"30", placeholder: "例）現金支払い、クレジットカード決済、QRコード決済" %></td>
+      </tr>
+      <tr>
+        <th>喫煙・禁煙</th>
+        <td><%= f.text_area :smoking, :size=>"30", placeholder: "例）店内全席禁煙　駐車場に喫煙所あり" %></td>
+      </tr>
+      <tr>
+        <th>カフェ紹介文</th>
+        <td><%= f.text_area :introduce, :size=>"30x5" %></td>
+      </tr>
+      <tr>
+        <th>備考</th>
+        <td><%= f.text_area :remarks, :size=>"30x5", placeholder: "例）混雑時は２時間制とさせて頂きます。" %></td>
+      </tr>
+      <tr>
+        <th>カフェ画像</th>
+        <td><%= f.file_field :cafe_images, direct_upload: true, multiple: true %></td>
+      </tr>
+    </table>
 
-    <label>支払い方法</label>
-    <%= f.text_field :payment_method %><br />
 
-    <label>喫煙・禁煙</label>
-    <%= f.text_field :smoking %><br />
+    <h3 class="mt-5">現在の混雑状況</h3>
+      <div class="row mt-5">
+        <div class="col-md-3">
+          <%= f.radio_button :congestion_status, "available" %>
+          <%= f.label :congestion_status, "空席あり：○" %>
+        </div>
+        <div class="col-md-3">
+          <%= f.radio_button :congestion_status, "little_left" %>
+          <%= f.label :congestion_status, "残りわずか ：△" %>
+        </div>
+        <div class="col-md-3">
+          <%= f.radio_button :congestion_status, "not_available" %>
+          <%= f.label :congestion_status, "空席なし : ×" %>
+        </div>
+        <div class="col-md-3">
+          <%= f.radio_button :congestion_status, "outside_hours" %>
+          <%= f.label :congestion_status, "営業時間外" %>
+        </div>
+      </div>
+      <div>
+        <%= f.submit "変更を保存", class: "btn btn-primary mt-5" %>
+      </div>
 
-    <label>カフェ紹介文</label>
-    <%= f.text_field :introduce %><br />
-
-    <label>備考</label>
-    <%= f.text_field :remarks %><br />
-
-    <label>カフェ画像</label>
-    <%= f.file_field :cafe_images, direct_upload: true, multiple: true %>
-
-<div>
-    <%= f.radio_button :congestion_status, "available" %>
-    <%= f.label :congestion_status, "空席あり" %>
+    <% end %>
 </div>
-<div>
-    <%= f.radio_button :congestion_status, "little_left" %>
-    <%= f.label :congestion_status, "残りわずか" %>
-</div>
-<div>
-    <%= f.radio_button :congestion_status, "not_available" %>
-    <%= f.label :congestion_status, "空席なし" %>
-</div>
-<div>
-    <%= f.radio_button :congestion_status, "outside_hours" %>
-    <%= f.label :congestion_status, "営業時間外" %>
-</div>
-
-
-
-
-    <%= f.submit "変更を保存" %>
-
-<% end %>
