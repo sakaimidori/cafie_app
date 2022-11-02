@@ -9,6 +9,11 @@ class Cafe < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  validates :email, presence: true
+  validates :cafe_name, presence: true
+  validates :phone_number, presence: true
+  validates :address, presence: true
+
   has_many_attached :cafe_images
 
                             #営業時間外　　　　空席あり　　　残りわずか　　　空席なし
