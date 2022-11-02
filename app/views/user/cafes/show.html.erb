@@ -1,266 +1,290 @@
+<div class="container mb-5">
 
+  <div class="row">
 
-<h2>
-  <%= @cafe.cafe_name %>
-</h2>
-
-<div>
-  <% if current_user %>
-    <% if @cafe.favorited_by?(current_user) %>
-      <p>
-        <%= link_to cafe_favorites_path(@cafe), method: :delete do %>
-          ♥<%= @cafe.favorites.count %>いいね
-      </p>
-        <% end %>
-    <% else %>
-      <p>
-        <%= link_to cafe_favorites_path(@cafe), method: :post do %>
-          ♥<%= @cafe.favorites.count %>いいね
-        <% end %>
-      </p>
-    <% end %>
-  <% else %>
-    <p>
-      <%= link_to  new_user_session_path do %>
-        ♥<%= @cafe.favorites.count %>いいね
-      <% end %>
-    </p>
-  <% end %>
-
-</div>
-<%= flash[:notice] %>
-
-<div>
-  <%= @cafe.congestion_status_i18n %>
-</div>
-
-<div>
-  <% if @cafe.cafe_images.attached? %>
-    <% @cafe.cafe_images.each do |cafe_image| %>
-      <%= image_tag cafe_image.variant(resize_to_limit: [150, 150]) %>
-    <% end %>
-  <% end%>
-</div>
-
-<ul class = "text-center nav nav-tabs" id="myTab" role="tablist">
-  <li class = "nav-item" role = "presentation">
-    <button
-      class = "nav-link active"
-      id = "home-tab"
-      data-bs-toggle = "tab"
-      data-bs-target = "#home"
-      type = "button"
-      role = "tab"
-      aria-controls = "home"
-      aria-selected = "true"
-      >
-      基本情報
-    </button>
-  </li>
-
-  <li class = "nav-item" role = "presentation">
-    <button
-      class = "nav-link"
-      id = "menu-tab"
-      data-bs-toggle = "tab"
-      data-bs-target = "#menu"
-      type = "button"
-      role = "tab"
-      aria-controls = "menu"
-      aria-selected = "false"
-      >
-      メニュー(<%= @cafe.menus.count %>)
-    </button>
-  </li>
-
-  <li class = "nav-item" role = "presentation">
-    <button
-      class = "nav-link"
-      id = "review-tab"
-      data-bs-toggle = "tab"
-      data-bs-target = "#review"
-      type = "button"
-      role = "tab"
-      aria-controls = "review"
-      aria-selected = "false"
-      >
-      クチコミ(<%= @cafe.reviews.count %>)
-    </button>
-  </li>
-
-
-  <li class = "nav-item" role = "presentation">
-    <button
-    class = "nav-link"
-    id = "map-tab"
-    data-bs-toggle = "tab"
-    data-bs-target = "#map"
-    type = "button"
-    role = "tab"
-    aria-controls = "map"
-    aria-selected = "false"
-    >
-      マップ
-    </button>
-  </li>
-</ul>
-
-<div class = "tab-content" id = "myTabContent">
-
-  <div
-    class = "tab-pane fade show active"
-    id = "home"
-    role = "tabpanel"
-    aria-labelledby = "home-tab"
-    >
-    <table>
-
-      <tr>
-        <th>電話番号</th>
-        <td><%= @cafe.phone_number %></td>
-      </tr>
-      <tr>
-        <th>住所</th>
-        <td><%= @cafe.address %></td>
-      </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <td><%= @cafe.email %></td>
-      </tr>
-      <tr>
-        <th>営業時間</th>
-        <td><%= @cafe.business_hour %></td>
-      </tr>
-      <tr>
-        <th>定休日</th>
-        <td><%= @cafe.fixed_holiday %></td>
-      </tr>
-      <tr>
-        <th>支払い方法</th>
-        <td><%= @cafe.payment_method %></td>
-      </tr>
-      <tr>
-        <th>喫煙・禁煙</th>
-        <td><%= @cafe.smoking %></td>
-      </tr>
-      <tr>
-        <th>カフェ紹介文</th>
-        <td><%= @cafe.introduce %></td>
-      </tr>
-      <tr>
-        <th>備考</th>
-         <td><%= @cafe.remarks %></td>
-      </tr>
-    </table>
-
-  </div>
-
-
-  <div
-    class = "tab-pane fade"
-    id = "menu"
-    role = "tabpanel"
-    aria-labelledby = "menu-tab"
-    >
-    <table>
-      <% @cafe.menus.each do |menu| %>
-        <tr>
-          <tbody>
-            <td>
-              <%= image_tag menu.get_image(100,100) %>
-            </td>
-            <td>
-              <h5><%= menu.menu_name %></h5>
-            </td>
-            <td>
-              <%= menu.price %>円
-            </td>
-          </tbody>
-        </tr>
-      <% end %>
-
-    </table>
-
-  </div>
-
-  <div
-    class = "tab-pane fade"
-    id = "review"
-    role = "tabpanel"
-    aria-labelledby = "review-tab"
-    >
-  <table>
-    <% @cafe.reviews.each do |review| %>
-      <tr>
-        <tbody>
-          <td>
-            <%= review.user.username %>
-          </td>
-          <td>
-            <%= review.content %>
-          </td>
-          <td>
-            <% if review.user == current_user %>
-               <%= link_to "削除", cafe_review_path(review), method: :delete %>
+    <h2 class="col-md-1">
+      <% if current_user %>
+        <% if @cafe.favorited_by?(current_user) %>
+          <p>
+            <%= link_to cafe_favorites_path(@cafe), method: :delete do %>
+              ♥<%= @cafe.favorites.count %>
+          </p>
             <% end %>
-          </td>
-        </tbody>
-      </tr>
-    <% end %>
-  </table>
+        <% else %>
+          <p>
+            <%= link_to cafe_favorites_path(@cafe), method: :post do %>
+              ♥<%= @cafe.favorites.count %>
+            <% end %>
+          </p>
+        <% end %>
+      <% else %>
+        <p>
+          <%= link_to  new_user_session_path do %>
+            ♥<%= @cafe.favorites.count %>
+          <% end %>
+        </p>
+      <% end %>
+    </h2>
 
-<div>
-  <%= form_with model: [@cafe, @review] do |f| %>
-    <%= f.text_area :content, row: '5', placeholder: "クチコミを投稿してください。" %>
-    <%= f.submit "投稿する" %>
-  <% end %>
-</div>
+    <h2 class="col-md-6">
+      <%= @cafe.cafe_name %>
+    </h2>
 
+    <h2 class="col-md-5 text-danger">
+      『<%= @cafe.congestion_status_i18n %>』
+    </h2>
 
-
-
-
-</div>
-
-  <div
-    class = "tab-pane fade"
-    id = "map"
-    role = "tabpanel"
-    aria-labelledby = "map-tab"
-    >
-    <div id= "map"></div>
-
-    <script>
-      let map;
-      function initMap() {
-        // geocoderを初期化
-        geocoder = new google.maps.Geocoder()
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
-          center: {
-            lat: gon.cafe.latitude,
-            lng: gon.cafe.longitude
-          },
-          zoom: 17,
-        });
+  </div>
 
 
-        marker = new google.maps.Marker({
-          // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
-          position: {
-            lat: gon.cafe.latitude,
-            lng: gon.cafe.longitude
-          },
-          map: map
-        });
-      }
-    </script>
 
-    <script async defer
-          src = "https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
-    </script>
 
+    <div class="mb-5">
+      <% if @cafe.cafe_images.attached? %>
+        <% @cafe.cafe_images.each do |cafe_image| %>
+          <%= image_tag cafe_image.variant(resize_to_limit: [150, 150]) %>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
+
+
+  <ul class = "text-center nav nav-tabs" id="myTab" role="tablist">
+    <li class = "nav-item" role = "presentation">
+      <button
+        class = "nav-link active"
+        id = "home-tab"
+        data-bs-toggle = "tab"
+        data-bs-target = "#home"
+        type = "button"
+        role = "tab"
+        aria-controls = "home"
+        aria-selected = "true"
+        >
+        基本情報
+      </button>
+    </li>
+
+    <li class = "nav-item" role = "presentation">
+      <button
+        class = "nav-link"
+        id = "menu-tab"
+        data-bs-toggle = "tab"
+        data-bs-target = "#menu"
+        type = "button"
+        role = "tab"
+        aria-controls = "menu"
+        aria-selected = "false"
+        >
+        メニュー(<%= @cafe.menus.count %>)
+      </button>
+    </li>
+
+    <li class = "nav-item" role = "presentation">
+      <button
+        class = "nav-link"
+        id = "review-tab"
+        data-bs-toggle = "tab"
+        data-bs-target = "#review"
+        type = "button"
+        role = "tab"
+        aria-controls = "review"
+        aria-selected = "false"
+        >
+        クチコミ(<%= @cafe.reviews.count %>)
+      </button>
+    </li>
+
+
+    <li class = "nav-item" role = "presentation">
+      <button
+      class = "nav-link"
+      id = "map-tab"
+      data-bs-toggle = "tab"
+      data-bs-target = "#map"
+      type = "button"
+      role = "tab"
+      aria-controls = "map"
+      aria-selected = "false"
+      >
+        マップ
+      </button>
+    </li>
+  </ul>
+
+  <div class = "tab-content" id = "myTabContent">
+
+    <div
+      class = "tab-pane fade show active"
+      id = "home"
+      role = "tabpanel"
+      aria-labelledby = "home-tab"
+      >
+      <table class="table">
+
+        <tr>
+          <th>電話番号</th>
+          <td><%= @cafe.phone_number %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= @cafe.address %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @cafe.email %></td>
+        </tr>
+        <tr>
+          <th>営業時間</th>
+          <td><%= @cafe.business_hour %></td>
+        </tr>
+        <tr>
+          <th>定休日</th>
+          <td><%= @cafe.fixed_holiday %></td>
+        </tr>
+        <tr>
+          <th>支払い方法</th>
+          <td><%= @cafe.payment_method %></td>
+        </tr>
+        <tr>
+          <th>喫煙・禁煙</th>
+          <td><%= @cafe.smoking %></td>
+        </tr>
+        <tr>
+          <th>カフェ紹介文</th>
+          <td><%= @cafe.introduce %></td>
+        </tr>
+        <tr>
+          <th>備考</th>
+           <td><%= @cafe.remarks %></td>
+        </tr>
+      </table>
+
+    </div>
+
+
+    <div
+      class = "tab-pane fade"
+      id = "menu"
+      role = "tabpanel"
+      aria-labelledby = "menu-tab"
+      >
+      <table class="table">
+        <% @cafe.menus.each do |menu| %>
+          <tr>
+            <tbody>
+              <td>
+                <%= image_tag menu.get_image(100,100) %>
+              </td>
+              <td>
+                <%= menu.menu_name %>
+              </td>
+              <td>
+                <%= menu.price %>円
+              </td>
+            </tbody>
+          </tr>
+        <% end %>
+      </table>
+
+    </div>
+
+    <div
+      class = "tab-pane fade"
+      id = "review"
+      role = "tabpanel"
+      aria-labelledby = "review-tab"
+      >
+
+      <!--クチコミ一覧-->
+
+      <table class="table">
+        <% @cafe.reviews.each do |review| %>
+          <tr>
+            <tbody>
+              <td>
+                <%= review.user.username %>
+              </td>
+              <td>
+                <%= review.content %>
+              </td>
+              <td>
+                <% if review.user == current_user %>
+                   <%= link_to "削除", cafe_review_path(@cafe.id,review), method: :delete, class: "btn btn-outline-primary" %>
+                <% end %>
+              </td>
+            </tbody>
+          </tr>
+        <% end %>
+      </table>
+
+      <!--クチコミ新規投稿-->
+
+      <!--バリデーションの記述-->
+      <% if @review.errors.any? %>
+        <%= @review.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @review.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <!---->
+      <div>
+        <% if user_signed_in? %>
+          <div>クチコミをここに</div>
+          <%= form_with model: [@cafe, @review]  do |f| %>
+            <%= f.text_area :content, :size=>"30x5", placeholder: "クチコミを投稿してください。" %>
+            <%= f.submit "投稿する", class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+
+
+    <div
+      class = "tab-pane fade"
+      id = "map"
+      role = "tabpanel"
+      aria-labelledby = "map-tab"
+      >
+      <div id= "map"></div>
+
+      <script>
+        let map;
+        function initMap() {
+          // geocoderを初期化
+          geocoder = new google.maps.Geocoder()
+
+          map = new google.maps.Map(document.getElementById('map'), {
+            // コントローラーで定義した変数から緯度経度を呼び出し、マップの中心に表示
+            center: {
+              lat: gon.cafe.latitude,
+              lng: gon.cafe.longitude
+            },
+            zoom: 17,
+          });
+
+
+          marker = new google.maps.Marker({
+            // コントローラーで定義した変数から緯度経度を呼び出し、マーカーを立てる
+            position: {
+              lat: gon.cafe.latitude,
+              lng: gon.cafe.longitude
+            },
+            map: map
+          });
+        }
+      </script>
+
+      <script async defer
+            src = "https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap">
+      </script>
+
+    </div>
   </div>
 </div>
 
