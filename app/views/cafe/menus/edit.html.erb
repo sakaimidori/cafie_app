@@ -1,16 +1,34 @@
-<h2>メニュー編集</h2>
+<div class="text-center">
+
+  <h3>メニュー編集</h3>
+
+  <!--バリデーションの設定-->
+  <% if @menu.errors.any? %>
+    <%= @menu.errors.count %>件のエラーが発生しました
+    <ul>
+      <% @menu.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>q
+  <!---->
 
 
-<%= form_with model: @menu, url: cafe_menu_path do |f| %>
+  <%= form_with model: @menu, url: cafe_menu_path do |f| %>
 
-  <label>写真</label><br />
-  <%= f.file_field :image, accept: "image/*" %><br />
-  <label>メニュー名</label>
-  <%= f.text_field :menu_name %><br />
+    <div class="field mt-4">
+      <%= f.label :menu_name, "メニュー名(必須)" %><br />
+      <%= f.text_field :menu_name, placeholder: "例）モンブラン" %>
+    </div>
+    <div class="field mt-4">
+      <%= f.label :price, "税込価格(必須)" %><br />
+      <%= f.text_field :price, placeholder: "例）600" %>円
+    </div>
+    <div class="mb-5">
+      <%= f.submit "変更を保存", class: "btn btn-sm btn-primary mt-3" %>
+    </div>
 
-  <label>価格</label>
-  <%= f.text_field :price %>円<br />
+  <% end %>
 
-  <%= f.submit "変更を保存" %>
 
-<% end %>
+</div>
