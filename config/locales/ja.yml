@@ -2,6 +2,7 @@ ja:
   errors:
     messages:
       blank: "が空欄です"
+      taken: "はご利用いただけません"
   enums:
     cafe:
       congestion_status:
