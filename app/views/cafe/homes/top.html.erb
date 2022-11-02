@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container text-center">
 
-  <h3>店舗基本情報</h3>
-  
-  
+  <h3 class="mb-5">店舗基本情報</h3>
+
+
       <table class = "table">
-  
+
         <tr>
           <th>店名</th>
           <td><%= @cafe.cafe_name %></td>
@@ -46,24 +46,30 @@
           <td><%= @cafe.remarks %></td>
         </tr>
       </table>
-  
-      <h3>現在の混雑状況</h3>
-  
-      <div><%= @cafe.congestion_status_i18n %></div>
-  
-      <div>
-        <% if @cafe.cafe_images.attached? %>
-          <% @cafe.cafe_images.each do |cafe_image| %>
-            <%= image_tag cafe_image.variant(resize_to_limit: [150, 150]) %>
-          <% end %>
-        <% end%>
-      </div>
-  
-  
-  
-       <%= link_to "編集する", edit_cafe_cafes_path %>
-       <%= link_to "退会する", confirm_cafe_cafes_path %>
 
+
+        <h3 class="mt-5">現在の混雑状況</h3>
+        <h4 class="text-danger">『<%= @cafe.congestion_status_i18n %>』</h4>
+
+
+
+        <h3 class="mt-5">店舗写真</h3>
+        <div class="mb-5">
+          <% if @cafe.cafe_images.attached? %>
+            <% @cafe.cafe_images.each do |cafe_image| %>
+              <%= image_tag cafe_image.variant(resize_to_limit: [150, 150]) %>
+            <% end %>
+          <% else %>
+            まだ登録されていません
+          <% end%>
+        </div>
+
+
+
+      <div class="mb-5">
+        <%= link_to "編集する", edit_cafe_cafes_path, class: "btn btn-primary" %>
+        <%= link_to "退会する", confirm_cafe_cafes_path, class: "btn btn-outline-primary" %>
+      </div>
   </div>
 
 
