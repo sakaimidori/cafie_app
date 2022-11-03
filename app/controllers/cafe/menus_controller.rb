@@ -13,8 +13,9 @@ class Cafe::MenusController < ApplicationController
     @menu.cafe = current_cafe
     if @menu.save
       redirect_to cafe_menus_path
-    else
-      @menus = Menu.all
+  else
+    @cafe = current_cafe
+    @menus = @cafe.menus
       render :index
     end
   end
