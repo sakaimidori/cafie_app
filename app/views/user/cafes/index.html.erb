@@ -15,46 +15,50 @@
   const cafes = gon.cafes;
 
   function initMap(){
-    // 現在位置の特定
-    navigator.geolocation.getCurrentPosition(function (position){
-      LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    let LatLng = new google.maps.LatLng(35.6812405, 139.7649361) // 取得できない場合に備えて東京駅に設定しておく
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: LatLng,
+      zoom: 13
+    });
 
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: LatLng,
-        zoom: 13
+    //forは繰り返し処理
+    // 変数iと0を定義し、
+    // gonで定義したcafes分繰り返し加える処理を行う
+    for (let i = 0; i < cafes.length; i++){
+      marker[i] = new google.maps.Marker({
+        map: map,
+        position: {
+          // DBに保存してある、緯度経度を呼び出す
+          lat: cafes[i].latitude,
+          lng: cafes[i].longitude
+        }
       });
+
+      // 変数iを変数idに代入
+      let id = cafes[i]['id']
+      // infoWindowは吹き出し
+      infoWindow[i] = new google.maps.InfoWindow({
+        // contentで中身を指定
+        // 今回は文字にリンクを貼り付けた形で表示
+        content: `<a data-turbolinks="false" href='/cafes/${id}'>${cafes[i].cafe_name}</a>`
+      });
+      // markerがクリックされた時、
+      marker[i].addListener("click", function(){
+        // infoWindowを表示
+        infoWindow[i].open(map, marker[i]);
+      });
+    }
+    // 現在位置の特定
+    navigator.geolocation.getCurrentPosition(success_cb, error_cb);
+  }
+  function success_cb(position){
+      LatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       // map.setCenterで地図が初期位置に移動
       map.setCenter(LatLng);
+  }
 
-      //forは繰り返し処理
-      // 変数iと0を定義し、
-      // gonで定義したcafes分繰り返し加える処理を行う
-      for (let i = 0; i < cafes.length; i++){
-
-        marker[i] = new google.maps.Marker({
-          map: map,
-          position: {
-            // DBに保存してある、緯度経度を呼び出す
-            lat: cafes[i].latitude,
-            lng: cafes[i].longitude
-          }
-        });
-
-        // 変数iを変数idに代入
-        let id = cafes[i]['id']
-        // infoWindowは吹き出し
-        infoWindow[i] = new google.maps.InfoWindow({
-          // contentで中身を指定
-          // 今回は文字にリンクを貼り付けた形で表示
-          content: `<a data-turbolinks="false" href='/cafes/${id}'>${cafes[i].cafe_name}</a>`
-        });
-        // markerがクリックされた時、
-        marker[i].addListener("click", function(){
-          // infoWindowを表示
-          infoWindow[i].open(map, marker[i]);
-        });
-      }
-    });
+  function error_cb(error){
+    console.log("現在地を取得できません。")
   }
 </script>
 
