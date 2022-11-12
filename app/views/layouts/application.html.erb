@@ -71,8 +71,14 @@
             </ul>
           </div>
         </div>
+        <div class="ms-auto">
+            <% if user_signed_in? %>
+              ようこそ、<%= current_user.username %>様
+            <% elsif cafe_signed_in? %>
+              ようこそ、<%= current_cafe.cafe_name %>様
+            <% end %>
+        </div>
       </nav>
-
     </header>
 
     <main>
