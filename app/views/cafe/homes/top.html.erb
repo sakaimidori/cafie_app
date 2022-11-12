@@ -57,7 +57,7 @@
         <div class="mb-5">
           <% if @cafe.cafe_images.attached? %>
             <% @cafe.cafe_images.each do |cafe_image| %>
-              <%= image_tag cafe_image.variant(resize_to_limit: [150, 150]) %>
+              <%= image_tag cafe_image.variant( resize: "150x150^", gravity: "center", crop: "150x150+0+0" ) %>
             <% end %>
           <% else %>
             まだ登録されていません
