@@ -29,7 +29,8 @@
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
-- JSライブラリ：未定
+- JSライブラリ：jQuery
+- UI/UX : レスポンシブデザイン
 - IDE：未定
 
 ## 使用素材
