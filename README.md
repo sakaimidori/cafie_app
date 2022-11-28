@@ -22,12 +22,15 @@
 - 現在地近くの空いているカフェを探しているとき
 - 混雑状況を発信することで、より効率的に集客が見込める
 
+
+## サイト概要
+
 ## 設計書
 ...
 
 ## 開発環境
 - OS：Linux(CentOS)
-- 言語：HTML,CSS,Ruby,SQL
+- 言語：HTML,CSS,Javascript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - UI/UX : レスポンシブデザイン
