@@ -1,4 +1,5 @@
 # cafie
+![logo]app/assets/images/logo2.png
 
 ## サイト概要
 ### サイトテーマ
