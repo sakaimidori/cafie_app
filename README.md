@@ -1,4 +1,3 @@
-# cafie
 ![logo](https://github.com/sakaimidori/cafie_app/blob/8ef46c1b21449487559efd22eb9b6ba2796b80d0/app/assets/images/logo2.png?raw=true)
 
 ## サイト概要
