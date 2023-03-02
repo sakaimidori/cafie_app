@@ -33,5 +33,3 @@ https://cafie.jp
 - UI/UX : レスポンシブデザイン
 - IDE：Cloud9
 
-## 使用素材
-- 使用検討中です
